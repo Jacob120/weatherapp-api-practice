@@ -12,10 +12,10 @@ const WeatherBox = () => {
   const [error, setError] = useState(false);
 
   const handleCityChange = useCallback(city => {
-    const cityName = city;
+   
     setPending(true);
     setError(false);
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=91285d50f3452fdecb3d6880dee8ff54&units=metric`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=91285d50f3452fdecb3d6880dee8ff54&units=metric`)
    .then(res => {
      if(res.status === 200){
 
@@ -41,7 +41,7 @@ const WeatherBox = () => {
   return (
     <section>
       <PickCity action={handleCityChange} />
-      {(cityWeather && !pending && !error) && <WeatherSummary {...cityWeather}/>}
+      {(cityWeather && !pending && !error) && <WeatherSummary {...cityWeather}/>} 
       {(pending && !error) && <Loader />}
       {error && <ErrorBox />}
     </section>
